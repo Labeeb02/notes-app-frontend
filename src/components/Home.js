@@ -121,8 +121,8 @@ const Home = ({authToken,logout}) => {
 	}
 
 	const editNoteEnd = (_id,tags,text) => {
-		console.log(tags);
-		console.log(text);
+		// console.log(tags);
+		// console.log(text);
 		var data = JSON.stringify({
 			"description": text,
 			"tags": tags
