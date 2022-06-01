@@ -125,6 +125,7 @@ textarea:focus {
 }
 
 .text{
+	overflow: auto;
 	height: 110px;
 }
 
