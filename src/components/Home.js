@@ -171,7 +171,6 @@ const Home = ({authToken,logout}) => {
 			</div>
 		)
 	}
-	console.log("AuthToken=",authToken);
 
 	return (
 		<div>
