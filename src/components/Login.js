@@ -35,7 +35,7 @@ const Login = ({ handle_login }) =>{
       {/* <FormInput description="Username" placeholder="Enter your username" type="text" />
       <FormInput description="Password" placeholder="Enter your password" type="password"/> */}
       <div className="row">
-        <label>Username</label>
+        <label>Email</label>
         <input type="text" placeholder="Enter your email" value={email} onChange={handleEmailChange}/>
       </div> 
       <div className="row">

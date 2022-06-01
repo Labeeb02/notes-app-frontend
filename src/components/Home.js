@@ -201,7 +201,7 @@ const Home = ({authToken,logout}) => {
 					<NotesList
 						notes={notes.filter((note) =>
 							// note.tags.toLowerCase().includes(searchText.toLowerCase())
-							searchText.split(',').every(tag => note.tags.includes(tag.trim()))
+							searchText.split(',').every(tag => note.tags.toLowerCase().includes(tag.toLowerCase().trim()))
 						)}
 						handleAddNote={addNote}
 						handleDeleteNote={deleteNote}

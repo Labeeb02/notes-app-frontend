@@ -53,7 +53,7 @@ const SignUp = ({ handle_signup }) =>{
         <input type="text" placeholder="Enter your name" value={name} onChange={handleNameChange}/>
       </div> 
       <div className="row">
-        <label>Username</label>
+        <label>Email</label>
         <input type="text" placeholder="Enter your email" value={email} onChange={handleEmailChange}/>
       </div> 
       <div className="row">
