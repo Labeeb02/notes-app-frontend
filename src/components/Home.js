@@ -159,19 +159,6 @@ const Home = ({authToken,logout}) => {
 		document.getElementById("notesList").classList.remove("ghost");
 	}
 
-	if(authToken===''){
-		return(
-			<div>
-				<h1>Please Login</h1>
-				<a href="/">
-					<button className='save'>
-						Return To LogIn
-					</button>
-				</a>
-			</div>
-		)
-	}
-
 	return (
 		<div>
 			{(authToken==='hemlo') ?
@@ -189,7 +176,7 @@ const Home = ({authToken,logout}) => {
 				</div>
 			:<div>
 			<div class="ghost" id="addNote">
-				<AddNew  handleAddNote={addNote} />
+				<AddNew  handleAddNote={addNote} handleClose={closeAddNote} />
 			</div>
 			<div class="ghost" id="editNote">
 				<EditNote  handleEditNote={editNoteEnd} _id={editID} _tags={edittags} text={edittext} />

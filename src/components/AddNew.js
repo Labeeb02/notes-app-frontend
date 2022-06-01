@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../css/addnew.scss';
 
-const AddNew = ({ handleAddNote }) => {
+const AddNew = ({ handleAddNote,handleClose }) => {
 	const [tags, setTags] = useState('');
 	const [noteText, setNoteText] = useState('');
 	const characterLimit = 200;
@@ -24,6 +24,12 @@ const AddNew = ({ handleAddNote }) => {
 		}
 	};
 
+	const handleBackClick = () => {
+		handleClose();
+		setNoteText('');
+		setTags('');
+	};
+
 	return (
         <div className="AddNew" >
 		<div className='note new'>
@@ -43,9 +49,15 @@ const AddNew = ({ handleAddNote }) => {
 				<small>
 					{characterLimit - noteText.length} Remaining
 				</small>
-				<button className='save' onClick={handleSaveClick}>
-					Save
-				</button>
+				<div>
+					<button className='save' onClick={handleBackClick}>
+						Back
+					</button>
+					<button className='save' onClick={handleSaveClick}>
+						Save
+					</button>
+				</div>
+				
 			</div>
 		</div>
         </div>
