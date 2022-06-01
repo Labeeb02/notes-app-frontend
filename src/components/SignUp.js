@@ -49,6 +49,7 @@ const SignUp = ({ handle_signup }) =>{
         await handle_signup(name,email,password);
         navigate('/home');
       }catch(err){
+        console.log(err.response);
         if(err.response.data.code==="11000"){
           alert("Email already exists!");
         }else{
