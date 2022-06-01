@@ -19,11 +19,15 @@ const Login = ({ handle_login }) =>{
 	};
 
 	const handleloginbtn =async () => {
-    try{
-      await handle_login(email,password);
-      navigate('/home');
-    }catch(err){
-      return err;
+    if(email==="" || password===""){
+      alert("Please fill all the fields!");
+    }else{
+      try{
+        await handle_login(email,password);
+        navigate('/home');
+      }catch(err){
+        alert("Wrong Email Or Password!");
+      } 
     }
 	};
 
