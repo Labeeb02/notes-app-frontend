@@ -30,14 +30,26 @@ const SignUp = ({ handle_signup }) =>{
 	};
 
 	const handlesignupbtn =async () => {
-    try{
-      await handle_signup(name,email,password);
-      navigate('/home');
-    }catch(err){
-      //console.log(err); 
-      return err;
+    if(name==="" || email==="" || password===""){
+      alert("Please fill all the fields!");
+    }else if(password.length<8){
+      alert("Password must be atleast 8 characters long!");
+    }else if(password.includes('password')){
+      alert("Password cannot contain 'password'!");
+    }else if(!email.includes("@")){
+      alert("Please enter a valid email!");
+    }else if(!email.includes(".")){
+      alert("Please enter a valid email!");
+    }else{
+      try{
+        await handle_signup(name,email,password);
+        navigate('/home');
+      }catch(err){
+        console.log(err);
+        console.log(err.code);
+        
+      } 
     }
-		
     //navigate('/home');
 	};
 
@@ -54,11 +66,14 @@ const SignUp = ({ handle_signup }) =>{
       </div> 
       <div className="row">
         <label>Email</label>
-        <input type="text" placeholder="Enter your email" value={email} onChange={handleEmailChange}/>
+        <input type="email" placeholder="Enter your email" value={email} onChange={handleEmailChange}/>
       </div> 
       <div className="row">
         <label>Password</label>
         <input type="password" placeholder="Enter your password" value={password} onChange={handlePwdChange}/>
+        <label></label>
+        <label>Password cannot have 'password'</label>
+        <label>Password must be atleast 8 characters long!</label>
       </div> 
       <div className="button-panel">
       {/* <a className="LoginBtn" href="/home"> */}
