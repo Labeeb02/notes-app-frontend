@@ -66,7 +66,7 @@ function App() {
       setAuth(response.data.token);
       localStorage.setItem('authToken',response.data.token);
     }catch(e){
-      throw new Error(e);
+      throw e;
     }
 
   }

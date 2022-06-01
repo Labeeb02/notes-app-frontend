@@ -28,7 +28,18 @@ const SignUp = ({ handle_signup }) =>{
     const handlePwdChange = (event) => {
 			setpassword(event.target.value);
 	};
-
+  const ValidateEmail=(email)=>
+  {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(email.match(mailformat))
+    {
+    return true;
+    }
+    else
+    {
+    return false;
+    }
+  }
 	const handlesignupbtn =async () => {
     if(name==="" || email==="" || password===""){
       alert("Please fill all the fields!");
@@ -36,9 +47,7 @@ const SignUp = ({ handle_signup }) =>{
       alert("Password must be atleast 8 characters long!");
     }else if(password.includes('password')){
       alert("Password cannot contain 'password'!");
-    }else if(!email.includes("@")){
-      alert("Please enter a valid email!");
-    }else if(!email.includes(".")){
+    }else if(!ValidateEmail(email)){
       alert("Please enter a valid email!");
     }else{
       try{
