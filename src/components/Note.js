@@ -9,7 +9,7 @@ const Note = ({tags, id, text, date, handleDeleteNote,handleEditNote }) => {
 					<div>#{tag.trim()}</div>
 				))}
 			</div>
-			<textarea className="text" wrap="hard">{text}</textarea>
+			<span className="text">{text}</span>
 			<div className='note-footer'>
 				<small>{date.split('T')[0]}</small>
 				<MdEdit
