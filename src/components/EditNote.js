@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 import '../css/addnew.scss';
 var active=1;
-const EditNote = ({ handleEditNote,_id,_tags,text }) => {
+const EditNote = ({ handleEditNote,_id,_tags,text,handleClose }) => {
 	const [tags, setTags] = useState('');
 	const [noteText, setNoteText] = useState('');
     //const [rand,setRand] = useState(Math.random());
@@ -41,6 +41,12 @@ const EditNote = ({ handleEditNote,_id,_tags,text }) => {
 		}
 	};
 
+	const handleBackClick = () => {
+		handleClose();
+		setNoteText('');
+		setTags('');
+	};
+
 	return (
         <div className="AddNew" >
 		<div className='note new'>
@@ -60,9 +66,14 @@ const EditNote = ({ handleEditNote,_id,_tags,text }) => {
 				<small>
 					{characterLimit - noteText.length} Remaining
 				</small>
-				<button className='save' onClick={handleEditClick}>
-					Edit
-				</button>
+				<div>
+					<button className='save' onClick={handleBackClick}>
+						Back
+					</button>
+					<button className='save' onClick={handleEditClick}>
+						Edit
+					</button>
+				</div>
 			</div>
 		</div>
         </div>

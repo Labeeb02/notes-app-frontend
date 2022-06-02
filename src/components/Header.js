@@ -8,10 +8,7 @@ const Header = ({ handleAddNote,logout }) => {
 			await logout();
 			navigate('/');
 		}catch(e){
-			if(e.response.data.error==='Please Authenticate')
-			{
 				navigate('/');
-			}
 		}
 		
 	}

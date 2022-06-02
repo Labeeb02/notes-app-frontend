@@ -32,28 +32,22 @@ const Home = ({authToken,logout}) => {
 		var savedNotes;
 		axios(config)
 		.then(function (response) {
-			//console.log(JSON.stringify(response.data));
 			savedNotes=response.data
 			if (savedNotes) {
 				setNotes(savedNotes);
 			}
 		})
 		.catch(function (error) {
+			if(error.response.data.error==='Please Authenticate')
+			{
+				alert('Please Sign In Again');
+			}
 		console.log(error);
 		});
-		//console.log(savedNotes);
 		
 	}, [notes,authToken]);
 
-	// useEffect(() => {
-	// 	localStorage.setItem(
-	// 		'react-notes-app-data',
-	// 		JSON.stringify(notes)
-	// 	);
-	// }, [notes]);
-
 	const addNote = (tags,text) => {
-		//const date = new Date();
 
 		var data = JSON.stringify({
 			"description": text,
@@ -78,19 +72,16 @@ const Home = ({authToken,logout}) => {
 			closeAddNote();
 		  })
 		  .catch(function (error) {
+			if(error.response.data.error==='Please Authenticate')
+			{
+				alert('Please Sign In Again');
+			}
 			console.log(error);
 		  });
-
-		// const newNote = {
-		// 	description: text
-		// };
-		// const newNotes = [...notes, newNote];
-		// setNotes(newNotes);
 	};
 
 	const deleteNote = (_id) => {
 		const newNotes = notes.filter((note) => note._id !== _id);
-		// setNotes(newNotes);
 		var config = {
 			method: 'delete',
 			url: 'https://labeeb-notes-app.herokuapp.com/tasks/'+_id.toString(),
@@ -105,6 +96,10 @@ const Home = ({authToken,logout}) => {
 			setNotes(newNotes);
 		  })
 		  .catch(function (error) {
+			if(error.response.data.error==='Please Authenticate')
+			{
+				alert('Please Sign In Again');
+			}
 			console.log(error);
 		  }); 
 		  
@@ -121,8 +116,6 @@ const Home = ({authToken,logout}) => {
 	}
 
 	const editNoteEnd = (_id,tags,text) => {
-		// console.log(tags);
-		// console.log(text);
 		var data = JSON.stringify({
 			"description": text,
 			"tags": tags
@@ -140,16 +133,27 @@ const Home = ({authToken,logout}) => {
 		  
 		  axios(config)
 		  .then(function (response) {
-			//console.log(JSON.stringify(response.data));
 			document.getElementById("editNote").classList.add("ghost");
 			document.getElementById("notesList").classList.remove("ghost");
 
 		  })
 		  .catch(function (error) {
+			if(error.response.data.error==='Please Authenticate')
+			{
+				alert('Please Sign In Again');
+			}
 			console.log(error);
 		  });
 	}
 
+	const openEditNote = () => {
+		document.getElementById("editNote").classList.remove("ghost");
+		document.getElementById("notesList").classList.add("ghost");
+	}
+	const closeEditNote = () => {
+		document.getElementById("editNote").classList.add("ghost");
+		document.getElementById("notesList").classList.remove("ghost");
+	}
 	const openAddNote=()=>{
 		document.getElementById("addNote").classList.remove("ghost");
 		document.getElementById("notesList").classList.add("ghost");
@@ -179,7 +183,7 @@ const Home = ({authToken,logout}) => {
 				<AddNew  handleAddNote={addNote} handleClose={closeAddNote} />
 			</div>
 			<div class="ghost" id="editNote">
-				<EditNote  handleEditNote={editNoteEnd} _id={editID} _tags={edittags} text={edittext} />
+				<EditNote  handleEditNote={editNoteEnd} _id={editID} _tags={edittags} text={edittext} handleClose={closeAddNote} />
 			</div>
 			<div className={`${darkMode && 'dark-mode'}`}>
 				<div className='container' id="notesList">
@@ -187,7 +191,6 @@ const Home = ({authToken,logout}) => {
 					<Search handleSearchNote={setSearchText} />
 					<NotesList
 						notes={notes.filter((note) =>
-							// note.tags.toLowerCase().includes(searchText.toLowerCase())
 							searchText.split(',').every(tag => note.tags.toLowerCase().includes(tag.toLowerCase().trim()))
 						)}
 						handleAddNote={addNote}
@@ -202,10 +205,3 @@ const Home = ({authToken,logout}) => {
 };
 
 export default Home;
-
-// const date = new Date();
-// 		const newNote = {
-// 			id: nanoid(),
-// 			text: text,
-// 			date: date.toLocaleDateString(),
-// 		};
