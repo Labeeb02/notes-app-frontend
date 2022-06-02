@@ -4,8 +4,16 @@ import { useNavigate } from 'react-router-dom';
 const Header = ({ handleAddNote,logout }) => {
 	let navigate=useNavigate();
 	const handleLogOut=async ()=>{
-		await logout();
-		navigate('/');
+		try{
+			await logout();
+			navigate('/');
+		}catch(e){
+			if(e.response.data.error==='Please Authenticate')
+			{
+				navigate('/');
+			}
+		}
+		
 	}
 
 	return (

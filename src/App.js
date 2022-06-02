@@ -85,7 +85,8 @@ function App() {
         localStorage.setItem('authToken','');
       })
       .catch(function (error) {
-        console.log(error);
+         
+          throw error;
       });
   }
   
