@@ -146,10 +146,10 @@ const Home = ({authToken,logout}) => {
 		  });
 	}
 
-	const openEditNote = () => {
-		document.getElementById("editNote").classList.remove("ghost");
-		document.getElementById("notesList").classList.add("ghost");
-	}
+	// const openEditNote = () => {
+	// 	document.getElementById("editNote").classList.remove("ghost");
+	// 	document.getElementById("notesList").classList.add("ghost");
+	// }
 	const closeEditNote = () => {
 		document.getElementById("editNote").classList.add("ghost");
 		document.getElementById("notesList").classList.remove("ghost");
@@ -183,7 +183,7 @@ const Home = ({authToken,logout}) => {
 				<AddNew  handleAddNote={addNote} handleClose={closeAddNote} />
 			</div>
 			<div class="ghost" id="editNote">
-				<EditNote  handleEditNote={editNoteEnd} _id={editID} _tags={edittags} text={edittext} handleClose={closeAddNote} />
+				<EditNote  handleEditNote={editNoteEnd} _id={editID} _tags={edittags} text={edittext} handleClose={closeEditNote} />
 			</div>
 			<div className={`${darkMode && 'dark-mode'}`}>
 				<div className='container' id="notesList">
