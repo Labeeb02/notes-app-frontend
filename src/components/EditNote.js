@@ -43,8 +43,6 @@ const EditNote = ({ handleEditNote,_id,_tags,text,handleClose }) => {
 
 	const handleBackClick = () => {
 		handleClose();
-		setNoteText('');
-		setTags('');
 	};
 
 	return (
